@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
@@ -16,7 +15,7 @@ import CandidatePortal from '@/pages/CandidatePortal';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen w-full bg-background text-foreground overflow-x-hidden">
+      <div className="h-screen w-screen bg-background text-foreground overflow-hidden layout-stable">
         <Routes>
           <Route path="/candidate-portal" element={<CandidatePortal />} />
           <Route path="/" element={<Layout />}>

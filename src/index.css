@@ -1,4 +1,3 @@
-
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -65,13 +64,13 @@
   --ring: 120 60% 50%;
 }
 
-
 * {
   border-color: hsl(var(--border));
   box-sizing: border-box;
 }
 
-html, body {
+html {
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -79,13 +78,47 @@ body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
-  min-height: 100vh;
-  font-family: 'Inter', sans-serif; /* A clean, modern font */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 @supports (font-variation-settings: normal) {
   body {
     font-family: 'Inter var', sans-serif;
+  }
+}
+
+/* Desktop-specific optimizations */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1800px;
   }
 }
 
@@ -285,7 +318,8 @@ body {
 }
 
 .scrollbar-thin::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
@@ -299,4 +333,40 @@ body {
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: hsla(var(--primary), 0.6);
+}
+
+/* Desktop layout utilities */
+.desktop-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 1024px) {
+  .desktop-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .desktop-container {
+    padding: 0 3rem;
+  }
+}
+
+/* Prevent layout shifts */
+.layout-stable {
+  contain: layout style;
+}
+
+/* Optimize for large screens */
+@media (min-width: 1920px) {
+  .text-xs { font-size: 0.875rem; }
+  .text-sm { font-size: 1rem; }
+  .text-base { font-size: 1.125rem; }
+  .text-lg { font-size: 1.25rem; }
+  .text-xl { font-size: 1.375rem; }
+  .text-2xl { font-size: 1.625rem; }
+  .text-3xl { font-size: 2rem; }
+  .text-4xl { font-size: 2.5rem; }
 }

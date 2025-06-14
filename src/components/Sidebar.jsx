@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -45,17 +44,21 @@ const Sidebar = ({ isOpen, onClose }) => {
       </AnimatePresence>
 
       <motion.div
-        initial={{ x: -300 }}
-        animate={{ x: isOpen ? 0 : -300 }}
+        initial={false}
+        animate={{ 
+          x: isOpen ? 0 : -300,
+          width: isOpen || window.innerWidth >= 1024 ? 256 : 0
+        }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className={cn(
-          "fixed lg:static inset-y-0 left-0 z-50 w-64 sidebar-gradient border-r border-border shadow-lg",
-          "lg:translate-x-0 lg:block",
+          "fixed lg:static inset-y-0 left-0 z-50 sidebar-gradient border-r border-border shadow-lg h-full",
+          "lg:translate-x-0 lg:block flex-shrink-0",
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
+        style={{ width: isOpen || window.innerWidth >= 1024 ? '16rem' : '0' }}
       >
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-5 border-b border-border">
+        <div className="flex flex-col h-full w-64">
+          <div className="flex items-center justify-between p-5 border-b border-border flex-shrink-0">
             <div className="flex items-center space-x-2.5">
               <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-primary-foreground" />
@@ -73,7 +76,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             </button>
           </div>
 
-          <nav className="flex-1 p-3 space-y-1.5 scrollbar-thin">
+          <nav className="flex-1 p-3 space-y-1.5 scrollbar-thin overflow-y-auto">
             {menuItems.map((item) => {
               const isActive = location.pathname === item.path || (item.path !== "/" && location.pathname.startsWith(item.path));
               return (
@@ -88,11 +91,11 @@ const Sidebar = ({ isOpen, onClose }) => {
                   )}
                 >
                   <item.icon className={cn(
-                    "w-4 h-4 transition-colors",
+                    "w-4 h-4 transition-colors flex-shrink-0",
                     isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
                   )} />
                   <span className={cn(
-                    "text-sm font-medium transition-colors",
+                    "text-sm font-medium transition-colors truncate",
                     isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
                   )}>
                     {item.label}
@@ -102,14 +105,14 @@ const Sidebar = ({ isOpen, onClose }) => {
             })}
           </nav>
 
-          <div className="p-4 border-t border-border">
+          <div className="p-4 border-t border-border flex-shrink-0">
             <div className="glass-effect rounded-lg p-3">
               <div className="flex items-center space-x-2.5">
-                <div className="w-9 h-9 rounded-full gradient-bg flex items-center justify-center">
+                <div className="w-9 h-9 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
                   <span className="text-xs font-bold text-primary-foreground">AI</span>
                 </div>
-                <div>
-                  <p className="text-sm font-medium text-foreground">AI Assistant</p>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">AI Assistant</p>
                   <p className="text-xs text-muted-foreground">Online & Ready</p>
                 </div>
               </div>
