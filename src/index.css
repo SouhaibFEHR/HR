@@ -71,7 +71,6 @@
 
 html {
   height: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -82,13 +81,41 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
 }
 
 #root {
   height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-right: 1rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding-right: 1rem;
+  margin-bottom: 2rem;
+}
+
+.content-section {
+  padding-right: 1rem;
+  margin-bottom: 2rem;
 }
 
 @supports (font-variation-settings: normal) {
@@ -97,28 +124,40 @@ body {
   }
 }
 
-/* Desktop-specific optimizations */
 @media (min-width: 1024px) {
-  body {
-    font-size: 16px;
-    line-height: 1.6;
+  .main-wrapper {
+    padding: 0 2rem;
   }
   
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
+  .dashboard-header {
+    padding-right: 2rem;
+  }
+  
+  .stats-grid {
+    padding-right: 2rem;
+  }
+  
+  .content-section {
+    padding-right: 2rem;
   }
 }
 
 @media (min-width: 1440px) {
-  .container {
-    max-width: 1600px;
+  .main-wrapper {
+    max-width: 1400px;
+    padding: 0 3rem;
   }
-}
-
-@media (min-width: 1920px) {
-  .container {
-    max-width: 1800px;
+  
+  .dashboard-header {
+    padding-right: 3rem;
+  }
+  
+  .stats-grid {
+    padding-right: 3rem;
+  }
+  
+  .content-section {
+    padding-right: 3rem;
   }
 }
 
@@ -335,38 +374,6 @@ body {
   background: hsla(var(--primary), 0.6);
 }
 
-/* Desktop layout utilities */
-.desktop-container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 1024px) {
-  .desktop-container {
-    padding: 0 2rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .desktop-container {
-    padding: 0 3rem;
-  }
-}
-
-/* Prevent layout shifts */
 .layout-stable {
   contain: layout style;
-}
-
-/* Optimize for large screens */
-@media (min-width: 1920px) {
-  .text-xs { font-size: 0.875rem; }
-  .text-sm { font-size: 1rem; }
-  .text-base { font-size: 1.125rem; }
-  .text-lg { font-size: 1.25rem; }
-  .text-xl { font-size: 1.375rem; }
-  .text-2xl { font-size: 1.625rem; }
-  .text-3xl { font-size: 2rem; }
-  .text-4xl { font-size: 2.5rem; }
 }
