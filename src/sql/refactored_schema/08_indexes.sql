@@ -1,0 +1,9 @@
+CREATE INDEX idx_users_org_id ON users(org_id);
+CREATE INDEX idx_job_postings_org_id ON job_postings(org_id);
+CREATE INDEX idx_candidates_org_id ON candidates(org_id);
+CREATE INDEX idx_applications_job_posting_id ON applications(job_posting_id);
+CREATE INDEX idx_applications_candidate_id ON applications(candidate_id);
+CREATE INDEX idx_enrollments_user_id ON enrollments(user_id);
+CREATE INDEX idx_performance_reviews_reviewee_id ON performance_reviews(reviewee_id);
+CREATE INDEX idx_onboarding_tasks_plan_id ON onboarding_tasks(plan_id);
+CREATE INDEX idx_notifications_user_id ON notifications(user_id);
